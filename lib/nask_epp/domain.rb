@@ -87,6 +87,9 @@ module NaskEpp::Domain
     response_xml.xpath("//domain:host", 'domain' => XMLNS).map(&:content)
   end
 
+  def domain_remove_all_dnssec(domain_name)
+    request_element_attribute(domain_remove_all_dnssec_xml(domain_name), :result, :code) == "1000"
+  end
   private
 
     def domain_info_extract(response_xml, name)
@@ -328,5 +331,32 @@ xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"#{N
   </command>
 </epp>"
     end
+
+
+  def domain_remove_all_dnssec_xml(domain_name)
+"<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?> <epp xmlns=\"#{NaskEpp::EPP_SCHEMA}\"
+xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"#{NaskEpp::EPP_SCHEMA_LOCATION}\">
+  <command>
+    <update>
+      <domain:update
+       xmlns:domain=\"#{NaskEpp::DOMAIN_SCHEMA}\"
+       xsi:schemaLocation=\"#{NaskEpp::DOMAIN_SCHEMA_LOCATION}\">
+        <domain:name>#{domain_name}</domain:name>
+      </domain:update>
+    </update>
+    <extension>
+      <secDNS:update
+      xmlns:secDNS=\"#{NaskEpp::SECDNS_SCHEMA}\"
+      xsi:schemaLocation=\"#{NaskEpp::SECDNS_SCHEMA_LOCATION}\">
+        <secDNS:rem>
+          <secDNS:all>true</secDNS:all>
+        </secDNS:rem>
+      </secDNS:update>
+    </extension>
+    <clTRID>ABC-12345</clTRID>
+  </command>
+</epp>"
+  end
+
 
 end
