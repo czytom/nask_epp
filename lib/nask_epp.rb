@@ -19,6 +19,9 @@ module NaskEpp
     EXTREPORT_SCHEMA_LOCATION = EXTREPORT_SCHEMA + " extreport-1.0.xsd"
     FUTURE_SCHEMA = "http://www.dns.pl/NASK-EPP/future-1.0"
     FUTURE_SCHEMA_LOCATION = FUTURE_SCHEMA + " future-1.0.xsd"
+    SECDNS_SCHEMA = "http://www.dns.pl/nask-epp-schema/secDNS-1.0"
+    SECDNS_SCHEMA_LOCATION = SECDNS_SCHEMA + " secDNS-1.0.xsd"
+
   when "3.0"
     EPP_SCHEMA = "http://www.dns.pl/nask-epp-schema/epp-2.0"
     EPP_SCHEMA_LOCATION = EPP_SCHEMA + " epp-2.0.xsd"
@@ -36,6 +39,8 @@ module NaskEpp
     EXTREPORT_SCHEMA_LOCATION = EXTREPORT_SCHEMA + " extreport-2.0.xsd"
     FUTURE_SCHEMA = "http://www.dns.pl/nask-epp-schema/future-2.0"
     FUTURE_SCHEMA_LOCATION = FUTURE_SCHEMA + " future-2.0.xsd"
+    SECDNS_SCHEMA = "http://www.dns.pl/nask-epp-schema/secDNS-2.0"
+    SECDNS_SCHEMA_LOCATION = SECDNS_SCHEMA + " secDNS-2.0.xsd"
   end
 end
 
