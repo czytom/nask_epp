@@ -27,7 +27,6 @@ module NaskEpp::Poll
          }
          message[:msg_type] = msg_type
        when 'trnData'
-         pp msg_details_element
          message[:msg_details] = {
            :name => msg_details_element.children.find {|ch| ch.class == Nokogiri::XML::Element and ch.name == 'name'}.text,
            :trStatus => msg_details_element.children.find {|ch| ch.class == Nokogiri::XML::Element and ch.name == 'trStatus'}.text,
