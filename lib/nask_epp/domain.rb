@@ -44,6 +44,7 @@ module NaskEpp::Domain
     if response_xml.search("result").first.attribute("code").value == "1000"
       {
         :name => domain_info_extract(response_xml, :name),
+        :registrant => domain_info_extract(response_xml, :registrant),
         :roid => domain_info_extract(response_xml, :roid),
         :exDate => domain_info_extract(response_xml, :exDate),
         :clID => domain_info_extract(response_xml, :clID),
@@ -103,7 +104,7 @@ module NaskEpp::Domain
         ""
       else
         (domain_params[:period] ? "<domain:period unit=\"y\">#{domain_params[:period]}</domain:period>" : "") +
-        (domain_params[:registrant] ? "<domain:registrant>#{domain_params[:registrant]}</domain:registrant>" : "") +
+        (domain_params[:registrant] ? "<domain:registrant>#{domain_params[:registrant]}</domain:registrant>" : "") + 
         (domain_params[:contact] ? "<domain:contact type=\"#{domain_params[:contact_type]}\">#{domain_params[:contact]}</domain:contact>" : "")
       end
     end
@@ -128,14 +129,6 @@ module NaskEpp::Domain
         </domain:authInfo>
       </domain:create>
     </create>
-    <extension>
-      <extdom:create xmlns:extdom=\"#{NaskEpp::EXTDOM_SCHEMA}\"
-       xsi:schemaLocation=\"#{NaskEpp::EXTDOM_SCHEMA_LOCATION}\">" +
-        (_domain_params[:reason] ? "<extdom:reason>#{_domain_params[:reason]}</extdom:reason>" : "") +
-        (domain_params[:book] ? "<extdom:book/>" : "") +
-        (domain_params[:taste] ? "<extdom:taste/>" : "") +
-      "</extdom:create>
-    </extension>
     <clTRID>ABC-12345</clTRID>
   </command>
 </epp>"

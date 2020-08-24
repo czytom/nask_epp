@@ -5,6 +5,8 @@ module NaskEpp::Prepaid
     "urn:ietf:params:xml:ns:extreport-1.0"
   when "3.0"
     "http://www.dns.pl/nask-epp-schema/extreport-2.0"
+  when "8.0"
+    "http://www.dns.pl/nask-epp-schema/extreport-2.1"
   end
 
   def prepaid_payment_funds(account_type)
