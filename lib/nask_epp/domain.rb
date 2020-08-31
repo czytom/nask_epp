@@ -5,6 +5,8 @@ module NaskEpp::Domain
     "urn:ietf:params:xml:ns:domain-1.0"
   when "3.0"
     "http://www.dns.pl/nask-epp-schema/domain-2.0"
+  when "8.0"
+    "http://www.dns.pl/nask-epp-schema/domain-2.1"
   end
 
   class DomainNotCreated < StandardError
